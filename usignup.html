@@ -58,13 +58,13 @@
 	
 						<div class="col-lg-4  col-md-6 header-right" style="margin-left: 30%;">
 							<h4 class="pb-30">Register as user</h4>
-							<form class="form">
+							<form class="form" method="post" action="mail.php">
 							    <div class="from-group">
 							    	<input class="form-control txt-field" type="text" name="name" placeholder="Your name"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your name'">
 							    	<input class="form-control txt-field" type="email" name="email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'">
-							    	<input class="form-control txt-field" type="tel" name="phone" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
-							    	<input class="form-control txt-field" type="password" name="pwd" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-							    	<input class="form-control txt-field" type="password" name="cpwd" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+							    	<input class="form-control txt-field" type="tel" name="phone" minlength="10" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
+							    	<input class="form-control txt-field" type="password" name="password" minlength="6" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							    	<input class="form-control txt-field" type="password" name="confirm_password" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" minlength="6">
 							    </div>								
 							    						    
 
