@@ -1,40 +1,45 @@
-<?php 
+<?php
 
-      $password = trim($_POST['password']);
-      $confirm_password = trim($_POST['confirm_password']);      
+require 'connect.php';
 
-      if(empty(trim($_POST['password']))){
-          $password_err = "Please enter a password.";     
-      } elseif(strlen(trim($_POST['password'])) < 6){
-          $password_err = "Password must have atleast 6 characters.";
-      } else{
-          $password = trim($_POST['password']);
-      }
-      // Validate confirm password
-      if(empty(trim($_POST["confirm_password"]))){
-          $confirm_password_err = 'Please confirm password.';     
-      } else{
-          $confirm_password = trim($_POST['confirm_password']);
-          if($password != $confirm_password){
-              $confirm_password_err = 'Password did not match.';
-          }
-      }
-      // Validate email
-      if(empty(trim($_POST['email']))){
-          $email_err = "Please enter an email.";     
-      } elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-          $email_err = "Invalid email format";
-      } else{
-          $email = trim($_POST['email']);
-      }
-      // Validate confirm password
-      if(empty(trim($_POST["confirm_password"]))){
-          $confirm_password_err = 'Please confirm password.';     
-      } else{
-          $confirm_password = trim($_POST['confirm_password']);
-          if($password != $confirm_password){
-              $confirm_password_err = 'Password did not match.';
-          }
-      }
+$query = "insert into booking values (booking_sequence.nextval,'".$_POST["name"]."','".$_POST["email"]."','".$_POST["phone"]."','".$_POST["from"]."','".$_POST["to"]."',to_date('".$_POST["date"]."','MM/DD/YYYY'))";
+$s = oci_parse($c, $query);
+$r = oci_execute($s);
 
+
+
+$query = "select * from booking";
+$s = oci_parse($c, $query);
+if (!$s) {
+    $m = oci_error($c);
+    trigger_error('Could not parse statement: '. $m['message'], E_USER_ERROR);
+}
+$r = oci_execute($s);
+if (!$r) {
+    $m = oci_error($s);
+    trigger_error('Could not execute statement: '. $m['message'], E_USER_ERROR);
+}
+ 
+echo "<table border='1'>\n";
+$ncols = oci_num_fields($s);
+echo "<tr>\n";
+for ($i = 1; $i <= $ncols; ++$i) {
+    $colname = oci_field_name($s, $i);
+    echo "  <th><b>".htmlspecialchars($colname,ENT_QUOTES|ENT_SUBSTITUTE)."</b></th>\n";
+}
+echo "</tr>\n";
+ 
+while (($row = oci_fetch_array($s, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+    echo "<tr>\n";
+    foreach ($row as $item) {
+        echo "<td>";
+        echo $item!==null?htmlspecialchars($item, ENT_QUOTES|ENT_SUBSTITUTE):"&nbsp;";
+        echo "</td>\n";
+    }
+    echo "</tr>\n";
+}
+echo "</table>\n";
+
+header('Location:index.html');
+ 
 ?>

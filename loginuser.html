@@ -28,7 +28,6 @@
 			<link rel="stylesheet" href="css/animate.min.css">
 			<link rel="stylesheet" href="css/jquery-ui.css">			
 			<link rel="stylesheet" href="css/main.css">
-			
 		</head>
 		<body>	
 			  <header id="header">
@@ -42,8 +41,7 @@
 							  <li><a href="service.html">Services</a></li>
 							  <li><a href="gallery.html">Gallery</a></li>
 							  <li class="menu-has-children"><a href="login.html">Log in</a></li>
-							  <li class="menu-has-children"><a href="signup.html">Sign up</a></li>
-							
+							  <li class="menu-has-children"><a href="signup.html">Sign up</a></li>			
 							  <li><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->		
@@ -56,18 +54,27 @@
 				<div class="overlay overlay-bg"></div>	
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-between">
-						<div class="banner-content col-lg-6 col-md-6 ">
-						<h3 style="color: white;">How do you want to sign up?</h3>
+	
+						<div class="col-lg-4  col-md-6 header-right" style="margin-left: 30%;">
+							<h4 class="pb-30">Login User</h4>
+							<form class="form" method="post" action="login.php">
+							    <div class="from-group">
+							    	<input class="form-control txt-field" type="email" name="email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required>
+							    	<input class="form-control txt-field" type="password" name="pwd" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"
+							    	minlength="6" required>
+							    </div>								
+							    				    
+							    <div class="form-group">
+
+							            <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Login</button>
+
+							    </div>
+							</form>
+						</div>											
 					</div>
-							<a href="usignup.html" class="primary-btn text-uppercase" style="width: 20%;text-align: center;color: black;">User</a><br>
-							<a href="dsignup.html" class="primary-btn text-uppercase" style="width: 20%;text-align: center;color: black;">Driver</a>
-					</div>
-				</div>
+				</div>					
 			</section>
-
 			<!-- End banner Area -->	
-
-
 			<!-- End home-calltoaction Area -->
 			
 			<!-- Start latest-blog Area -->
@@ -140,7 +147,7 @@
 								</div>
 							</div>
 						</div>	
-				<p class="mt-80 mx-auto footer-text col-lg-12">
+<p class="mt-80 mx-auto footer-text col-lg-12">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="index.html" target="_blank">HnK Cabs</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
