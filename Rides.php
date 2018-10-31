@@ -1,3 +1,7 @@
+	<?php
+		session_start();
+	?>
+
 	<!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
@@ -14,6 +18,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
+		<link rel="stylesheet" href="table.css">
 		<title>Taxi</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
@@ -42,7 +47,7 @@
 							  <li><a href="gallery.html">Gallery</a></li>
 							  <li class="menu-has-children"><a href="login.html">Log in</a></li>
 							  <li class="menu-has-children"><a href="signup.html">Sign up</a></li>
-							  <li><a href="rides.php">Your Rides</a></li>
+							  <li><a href="rides.php">Your Rides</a></li>	
 							  <li><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->		
@@ -57,47 +62,116 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Gallery				
+								Rides				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="gallery.html"> Gallery</a></p>
+							<p class="text-white link-nav"><a href="index.html"> Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="about.html"> Rides </a></p>
 						</div>	
 					</div>
 				</div>
 			</section>
 			<!-- End banner Area -->	
 
-			<!-- Start image-gallery Area -->
-			<section class="image-gallery-area section-gap">
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
 				<div class="container">
-					<div class="row section-title">
-						<h1>Image Gallery that we like to share</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>					
-					<div class="row">
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>							
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>													
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-						</div>				
+					<div class="row align-items-center">
+						<div class="col-lg-6 about-left">
+							<?php
+								if($_SESSION['uname'] != 1000){
+									echo '<h1>Your Rides</h1><br>';
+
+										require 'connect.php';
+
+										if(isset($_SESSION['uname'])){
+										    //
+										}
+										else{
+										    echo "<script>
+										        alert('Please login');
+										        window.location.href='loginuser.html';
+										        </script>";
+										}
+
+										$x = $_SESSION['uname'];
+
+										$query = "select * from booking where  login_id = ".$x;
+										$s = oci_parse($c, $query);
+										if (!$s) {
+										    $m = oci_error($c);
+										    trigger_error('Could not parse statement: '. $m['message'], E_USER_ERROR);
+										}
+										$r = oci_execute($s);
+										if (!$r) {
+										    $m = oci_error($s);
+										    trigger_error('Could not execute statement: '. $m['message'], E_USER_ERROR);
+										}
+										 
+										echo "<table id='customer'>\n\n";
+										$ncols = oci_num_fields($s);
+										echo "<tr>\n";
+										for ($i = 1; $i <= $ncols; ++$i) {
+										    $colname = oci_field_name($s, $i);
+										    echo "  <th><b>".htmlspecialchars($colname,ENT_QUOTES|ENT_SUBSTITUTE)."</b></th>\n";
+										}
+										echo "</tr>\n";
+										 
+										while (($row = oci_fetch_array($s, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+										    echo "<tr>\n";
+										    foreach ($row as $item) {
+										        echo "<td>";
+										        echo $item!==null?htmlspecialchars($item, ENT_QUOTES|ENT_SUBSTITUTE):"&nbsp;";
+										        echo "</td>\n";
+										    }
+										    echo "</tr>\n";
+										}
+										echo "</table>\n";
+									}
+								else{
+									echo 'Please Login';
+								}
+										echo '<br><br><h1>Your Slot</h1>';
+										$query = "select * from slot where  login_id = ".$x;
+										$s = oci_parse($c, $query);
+										if (!$s) {
+										    $m = oci_error($c);
+										    trigger_error('Could not parse statement: '. $m['message'], E_USER_ERROR);
+										}
+										$r = oci_execute($s);
+										if (!$r) {
+										    $m = oci_error($s);
+										    trigger_error('Could not execute statement: '. $m['message'], E_USER_ERROR);
+										}
+										 
+										echo "<table id='customer'>\n\n";
+										$ncols = oci_num_fields($s);
+										echo "<tr>\n";
+										for ($i = 1; $i <= $ncols; ++$i) {
+										    $colname = oci_field_name($s, $i);
+										    echo "  <th><b>".htmlspecialchars($colname,ENT_QUOTES|ENT_SUBSTITUTE)."</b></th>\n";
+										}
+										echo "</tr>\n";
+										 
+										while (($row = oci_fetch_array($s, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+										    echo "<tr>\n";
+										    foreach ($row as $item) {
+										        echo "<td>";
+										        echo $item!==null?htmlspecialchars($item, ENT_QUOTES|ENT_SUBSTITUTE):"&nbsp;";
+										        echo "</td>\n";
+										    }
+										    echo "</tr>\n";
+										}
+										echo "</table>\n";
+							?>
+						</div>
 					</div>
 				</div>	
 			</section>
-			<!-- End image-gallery Area -->			
+			<!-- End home-about Area -->
 
 			
+			<!-- End home-calltoaction Area -->										
+				    																			
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">
@@ -164,11 +238,11 @@
 								</div>
 							</div>
 						</div>	
-	<p class="mt-80 mx-auto footer-text col-lg-12">
+<p class="mt-80 mx-auto footer-text col-lg-12">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="index.html" target="_blank">HnK Cabs</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>											
+						</p>												
 					</div>
 				</div>
 				<img class="footer-bottom" src="img/footer-bottom.png" alt="">
@@ -187,6 +261,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
  			<script src="js/jquery-ui.js"></script>								
 			<script src="js/jquery.nice-select.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>		
+			<script src="js/main.js"></script>	
 		</body>
 	</html>

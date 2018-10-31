@@ -14,4 +14,5 @@ if (!$c) {
     trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
 }
 
+
 ?>

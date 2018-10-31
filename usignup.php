@@ -48,7 +48,7 @@
 		    echo "</tr>\n";
 		}
 		echo "</table>\n";
-		header("Location:index.html");
+		header("Location:loginuser.html");
 	}
 
 ?>

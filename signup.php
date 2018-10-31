@@ -1,3 +1,12 @@
+	<?php
+	session_start();
+	if(isset($_SESSION['uname'])){
+		$username = $_SESSION['uname'];
+	}
+	else
+		$username = "Guest";
+	?>
+
 	<!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
@@ -28,75 +37,33 @@
 			<link rel="stylesheet" href="css/animate.min.css">
 			<link rel="stylesheet" href="css/jquery-ui.css">			
 			<link rel="stylesheet" href="css/main.css">
+			
 		</head>
 		<body>	
-			  <header id="header">
-			    <div class="container main-menu">
-			    	<div class="row align-items-center justify-content-between d-flex">
-			    		<a href="index.html" style="font-size: 25px;color:white;">HnK Cabs</a>		
-						<nav id="nav-menu-container">
-							<ul class="nav-menu">
-							  <li class="menu-active"><a href="index.html">Home</a></li>
-							  <li><a href="about.html">About</a></li>
-							  <li><a href="service.html">Services</a></li>
-							  <li><a href="gallery.html">Gallery</a></li>
-							  <li class="menu-has-children"><a href="login.html">Log in</a></li>
-							  <li class="menu-has-children"><a href="signup.html">Sign up</a></li>
-							  <li><a href="rides.php">Your Rides</a></li>
-							  <li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav><!-- #nav-menu-container -->		
-			    	</div>
-			    </div>
-			  </header><!-- #header -->
-			  
+			  <?php require 'navbar.php' ?>
+
 			<!-- start banner Area -->
-			<section class="banner-area relative about-banner" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								Gallery				
-							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="gallery.html"> Gallery</a></p>
-						</div>	
+			<section class="banner-area relative" id="home">
+				<div class="overlay overlay-bg"></div>	
+				<div class="container">
+					<div class="row fullscreen d-flex align-items-center justify-content-between">
+						<div class="banner-content col-lg-6 col-md-6 ">
+						<h3 style="color: white;">How do you want to sign up?</h3>
+					</div>
+							<a href="usignup.html" class="primary-btn text-uppercase" style="width: 20%;text-align: center;color: black;">User</a><br>
+							<a href="dsignup.html" class="primary-btn text-uppercase" style="width: 20%;text-align: center;color: black;">Driver</a>
 					</div>
 				</div>
 			</section>
+
 			<!-- End banner Area -->	
 
-			<!-- Start image-gallery Area -->
-			<section class="image-gallery-area section-gap">
-				<div class="container">
-					<div class="row section-title">
-						<h1>Image Gallery that we like to share</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>					
-					<div class="row">
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>							
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>													
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-						</div>				
-					</div>
-				</div>	
-			</section>
-			<!-- End image-gallery Area -->			
 
+			<!-- End home-calltoaction Area -->
+			
+			<!-- Start latest-blog Area -->
+			
+			<!-- End latest-blog Area -->
 			
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
@@ -164,11 +131,11 @@
 								</div>
 							</div>
 						</div>	
-	<p class="mt-80 mx-auto footer-text col-lg-12">
+				<p class="mt-80 mx-auto footer-text col-lg-12">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="index.html" target="_blank">HnK Cabs</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>											
+						</p>												
 					</div>
 				</div>
 				<img class="footer-bottom" src="img/footer-bottom.png" alt="">
@@ -187,6 +154,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
  			<script src="js/jquery-ui.js"></script>								
 			<script src="js/jquery.nice-select.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>		
+			<script src="js/main.js"></script>	
 		</body>
 	</html>

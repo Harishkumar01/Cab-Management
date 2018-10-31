@@ -15,6 +15,11 @@
 		$s = oci_parse($c, $query);
 		$r = oci_execute($s);
 		
+
+
+		$query = "insert into vehicle values (vehicle_sequence.nextval,'".$_POST["vehicle"]."',driver_sequence.currval)";
+		$s = oci_parse($c, $query);
+		$r = oci_execute($s);
 		
 		
 		$query = "select * from driver";
@@ -48,7 +53,7 @@
 		    echo "</tr>\n";
 		}
 		echo "</table>\n";
-		header("Location:index.html");
+		header("Location:logindriver.html");
 	}
 
 ?>

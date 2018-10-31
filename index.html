@@ -28,6 +28,7 @@
 			<link rel="stylesheet" href="css/animate.min.css">
 			<link rel="stylesheet" href="css/jquery-ui.css">			
 			<link rel="stylesheet" href="css/main.css">
+
 		</head>
 		<body>	
 			  <header id="header">
@@ -42,7 +43,7 @@
 							  <li><a href="gallery.html">Gallery</a></li>
 							  <li class="menu-has-children"><a href="login.html">Log in</a></li>
 							  <li class="menu-has-children"><a href="signup.html">Sign up</a></li>
-							
+							  <li><a href="rides.php">Your Rides</a></li>
 							  <li><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->		
@@ -71,7 +72,7 @@
 							</p>
 							<a href="#" class="primary-btn text-uppercase">Sign up</a>
 						</div>
-						<div class="col-lg-4  col-md-6 header-right">
+						<div class="col-lg-4  col-md-6 header-right" style="margin-top: 15px;">
 							<h4 class="pb-30">Book Your Taxi Online!</h4>
 							<form class="form" method="post" action="mail.php">
 							    <div class="from-group">
@@ -86,7 +87,10 @@
 							    </div>
 							    <div class="form-group">
 							       	<input class="form-control txt-field" type="text" name="to" placeholder="To Destination" onfocus="this.placeholder = ''" onblur="this.placeholder = 'To Destination'" required>
-							    </div>							    
+							    </div>	
+							    <div class="form-group">
+							       	<input class="form-control txt-field" type="text" name="vehicle" placeholder="Vehicle" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your vehicle'" required>
+							    </div>								    
 							    <div class="form-group">
 									<div class="input-group dates-wrap">                                              
 										<input id="datepicker2" class="dates form-control"  placeholder="Date & time" type="text" name="date" 

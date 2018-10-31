@@ -19,11 +19,8 @@
 			if($x == $mail1 && $y == $pwd1){
 				echo "<li>".$x."</li><br>";
 				echo "<li>".$y."</li><br>";
-				$query = "insert into loginuser values (loginuser_sequence.nextval,'".$_POST["email"]."','".$_POST["pwd"]."','".$_POST["id"]."')";
-				$s = oci_parse($c, $query);
-				$r = oci_execute($s);	
 				session_start();
-            	$_SESSION['uname'] = $x;
+            	$_SESSION['uname'] = $z;
             	echo $_SESSION['uname'];
 				header('Location:index.html');
 			}
